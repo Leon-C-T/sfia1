@@ -54,13 +54,7 @@ def daytrip():
         Destination1 = details['Des_ID1']
         Destination2 = details['Des_ID2']
         
-        if NoFPeople == '':
-            nop = 0
-        else:
-            nop = int(NoFPeople)
-        if type(nop) != int:
-            nop = 100
-
+       
         if firstN == '' or lastN == '' or NoFPeople == '':
             flash('You must fill in all fields! Please try again!', 'danger')
             return redirect(url_for('daytrip'))
@@ -69,7 +63,18 @@ def daytrip():
             return redirect(url_for('daytrip')) 
         if Destination1 == '1' or Destination2 == '1' or Restaurant_ID =='1':
             flash('You must fill in all fields! Please try again!', 'danger')
-            return redirect(url_for('daytrip')) 
+            return redirect(url_for('daytrip'))     
+        if NoFPeople == '':
+            nop = 0
+        else:
+            nop = list(NoFPeople)
+        a = ['1','2','3','4','5','6','7','8','9','0']
+        for i in nop:
+            if i not in a:
+                flash('You can only enter numbers in the No of People Field, Please try again', 'danger')
+                return redirect(url_for('daytrip')) 
+            else:
+                nop = int(NoFPeople)
         if nop > 30:
             flash('You have too many people in your booking, Please contact us directly for large group bookings (30+)', 'danger')
             return redirect(url_for('daytrip'))
@@ -198,6 +203,12 @@ def daytripmanagementconsole():
             NoFPeople = daytriplist[2]
         else:
             NoFPeople = details['NoPeople']
+            nop = list(NoFPeople)
+            a = ['1','2','3','4','5','6','7','8','9','0']
+            for i in nop:
+                if i not in a:
+                    flash('You can only enter numbers in the No of People Field, Please try again', 'danger')
+                    return redirect(url_for('daytripmanagementconsole')) 
         if details['Res_ID'] == '1':
             Restaurant_ID = daytriplist[3]
         else:
