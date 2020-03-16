@@ -11,7 +11,7 @@ app.config['MYSQL_USER'] = os.environ.get('MYSQLUSER') #-Username for DB - envir
 app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQLPASSWORD') #Password for DB - environ variable: MYSQLPASSWORD="whatever the password is"
 app.config['MYSQL_DB'] = os.environ.get('MYSQLDB') #Database thats being used - environ variable: MYSQLDB="whatever database you want to use"
 #app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-app.secret_key = os.environ.get('MYSQLSECRETKEY') # b'_5#bfgolas(^(^(*sklngdaslxec]/'
+app.secret_key = os.environ.get('MYSQLSECRETKEY')
 
 mysql = MySQL(app)
 
@@ -63,7 +63,21 @@ def daytrip():
             return redirect(url_for('daytrip')) 
         if Destination1 == '1' or Destination2 == '1' or Restaurant_ID =='1':
             flash('You must fill in all fields! Please try again!', 'danger')
-            return redirect(url_for('daytrip'))     
+            return redirect(url_for('daytrip'))
+
+        lettertest=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ']
+        nametest1 = list(firstN.lower())
+        nametest2 = list(lastN.lower())
+        for i in nametest1:
+            if i not in lettertest:
+                flash('You can only enter letters in the name Field, Please try again', 'danger')
+                return redirect(url_for('daytrip'))    
+        for i in nametest2:
+            if i not in lettertest:
+                flash('You can only enter letters in the name Field, Please try again', 'danger')
+                return redirect(url_for('daytrip'))
+
+
         if NoFPeople == '':
             nop = 0
         else:
@@ -75,6 +89,7 @@ def daytrip():
                 return redirect(url_for('daytrip')) 
             else:
                 nop = int(NoFPeople)
+
         if nop > 30:
             flash('You have too many people in your booking, Please contact us directly for large group bookings (30+)', 'danger')
             return redirect(url_for('daytrip'))
@@ -195,10 +210,23 @@ def daytripmanagementconsole():
             firstN = daytriplist[0]
         else:
             firstN = details['UFName']
+            lettertest=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ']
+            nametest1 = list(firstN.lower())
+            for i in nametest1:
+                if i not in lettertest:
+                    flash('You can only enter letters in the name Field, Please try again', 'danger')
+                    return redirect(url_for('daytripmanagementconsole'))    
+        
         if details['ULName'] == '':
             lastN = daytriplist[1]
         else:
             lastN = details['ULName']
+            lettertest=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ']
+            nametest2 = list(lastN.lower())
+            for i in nametest2:
+                if i not in lettertest:
+                    flash('You can only enter letters in the name Field, Please try again', 'danger')
+                    return redirect(url_for('daytripmanagementconsole'))
         if details['NoPeople'] == '':
             NoFPeople = daytriplist[2]
         else:
