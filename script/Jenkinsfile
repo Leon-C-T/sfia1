@@ -10,6 +10,7 @@ pipeline{
                 sh 'sudo systemctl daemon-reload'
                 sh 'sudo systemctl enable mintbooking.service'
                 sh 'sudo systemctl start mintbooking.service'
+                sh 'sudo systemctl restart mintbooking.service'
                 sh 'echo "Built Successfully"' 
                 
                 
