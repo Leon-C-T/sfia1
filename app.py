@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from flask_mysqldb import MySQL
-from forms import PostForm
+#from forms import PostForm
 import os
 
 app = Flask(__name__)
@@ -11,7 +11,7 @@ app.config['MYSQL_USER'] = os.environ['MYSQLUSER'] #-Username for DB - environ v
 app.config['MYSQL_PASSWORD'] = os.environ['MYSQLPASSWORD'] #Password for DB - environ variable: MYSQLPASSWORD="whatever the password is"
 app.config['MYSQL_DB'] = os.environ['MYSQLDB'] #Database thats being used - environ variable: MYSQLDB="whatever database you want to use"
 #app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-app.secret_key = b'_5#bfgolas(^(^(*sklngdaslxec]/'
+app.secret_key = os.environ['MYSQLSECRETKEY'] # b'_5#bfgolas(^(^(*sklngdaslxec]/'
 
 mysql = MySQL(app)
 
