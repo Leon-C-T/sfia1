@@ -6,12 +6,12 @@ import os
 app = Flask(__name__)
 
 
-app.config['MYSQL_HOST'] = os.environ['MYSQLHOST'] #-ip address of SQL DB - environ variable: MYSQLHOST="ip address"
-app.config['MYSQL_USER'] = os.environ['MYSQLUSER'] #-Username for DB - environ variable: MYSQLUSER="root"
-app.config['MYSQL_PASSWORD'] = os.environ['MYSQLPASSWORD'] #Password for DB - environ variable: MYSQLPASSWORD="whatever the password is"
-app.config['MYSQL_DB'] = os.environ['MYSQLDB'] #Database thats being used - environ variable: MYSQLDB="whatever database you want to use"
+app.config['MYSQL_HOST'] = os.environ.get('MYSQLHOST') #-ip address of SQL DB - environ variable: MYSQLHOST="ip address"
+app.config['MYSQL_USER'] = os.environ.get('MYSQLUSER') #-Username for DB - environ variable: MYSQLUSER="root"
+app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQLPASSWORD') #Password for DB - environ variable: MYSQLPASSWORD="whatever the password is"
+app.config['MYSQL_DB'] = os.environ.get('MYSQLDB') #Database thats being used - environ variable: MYSQLDB="whatever database you want to use"
 #app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-app.secret_key = os.environ['MYSQLSECRETKEY'] # b'_5#bfgolas(^(^(*sklngdaslxec]/'
+app.secret_key = os.environ.get('MYSQLSECRETKEY') # b'_5#bfgolas(^(^(*sklngdaslxec]/'
 
 mysql = MySQL(app)
 
