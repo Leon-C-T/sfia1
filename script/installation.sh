@@ -8,4 +8,4 @@ sudo python3 -m pip install flask_mysqldb
 
 source ~/.bashrc
 
-sudo python3 app.py
+python3 app.py
