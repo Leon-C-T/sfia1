@@ -269,4 +269,4 @@ def restaurants():
     return render_template("restaurants.html" , title = 'Restaurants')
 
 if __name__ == "__main__":
-    app.run('0.0.0.0', debug = False)
+    app.run('0.0.0.0', debug = True)
