@@ -64,6 +64,9 @@ def daytrip():
         if firstN == '' or lastN == '' or NoFPeople == '':
             flash('You must fill in all fields! Please try again!', 'danger')
             return redirect(url_for('daytrip'))
+        if len(firstN) > 50 or len(lastN) > 50:
+            flash('Your name cannot be longer than 50 characters, Please enter it again', 'danger')
+            return redirect(url_for('daytrip')) 
         if Destination1 == '1' or Destination2 == '1' or Restaurant_ID =='1':
             flash('You must fill in all fields! Please try again!', 'danger')
             return redirect(url_for('daytrip')) 
@@ -207,6 +210,9 @@ def daytripmanagementconsole():
             Destination2 = d2[0]
         else:    
             Destination2 = details['Des_ID2']
+        if len(firstN) > 50 or len(lastN) > 50:
+            flash('Your first or last name cannot be longer than 50 characters, Please enter it again', 'danger')
+            return redirect(url_for('daytripmanagementconsole')) 
         print(Destination1)
         print(d1old)
         cur = mysql.connection.cursor()
