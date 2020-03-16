@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+    <header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+        <img class="w3-image" src="https://d3e1m60ptf1oym.cloudfront.net/5c01d41c-8c9e-45c7-9683-f2da14ef4b35/MWDEC18-146350_xgaplus.jpg" alt="Manchester" width="1500" height="700">
+        <div class="w3-display-middle" style="width:65%">
+        
+    
+            <div id="Daytrips" class="w3-container w3-white w3-padding-16 myLink">
+                <h3>Your Daytrip Booking Has Been Confirmed!</h3>
+                <h5>Heres the details:</h5>
+                <br>
+                <div class="w3-row-padding" style="margin:0 -16px;">
+                
+                  <h6><b>Your Trip ID (PLEASE SAVE THIS TO ACCESS THE TRIP MANAGER LATER): </b>{{allinfo[0]}}</h6> 
+                  <br>
+                  <h6><b>First Name on Booking:</b> {{allinfo[1]}}</h6>
+                  <br>
+                  <h6><b>Last Name on Booking:</b> {{allinfo[2]}}</h6> 
+                  <br>
+                  <h6><b>No of People on Booking:</b> {{allinfo[3]}}</h6> 
+                  <br>
+                  <h6><b>Name and Address of the Restaurant you selected:</b> {{r1[0]}}, {{r1[1]}},  <b>Price:</b> {{r1[3]}}</h6> 
+                  <br>
+                  <h6><b>Name and Address of the First destination you selected:</b> {{d1[0]}}, {{d1[1]}}</h6> 
+                  <br>
+                  <h6><b>Name and Address of the Second destination you selected:</b> {{d2[0]}}, {{d2[1]}}</h6> 
+                  <br>
+{% endblock %}
+
+ 

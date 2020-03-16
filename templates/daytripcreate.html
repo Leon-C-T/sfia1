@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% block body %} 
+<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+    <img class="w3-image" src="https://d3e1m60ptf1oym.cloudfront.net/5c01d41c-8c9e-45c7-9683-f2da14ef4b35/MWDEC18-146350_xgaplus.jpg" alt="Manchester" width="1500" height="700">
+    <div class="w3-display-middle" style="width:65%">
+    
+
+        <div id="Daytrips" class="w3-container w3-white w3-padding-16 myLink">
+            <h3>Daytrip Creator</h3>
+            <div class="w3-row-padding" style="margin:0 -16px;">
+            
+            <form method="POST" action=''>
+            </div>
+              <div class="w3-border">
+                <input class="w3-input w3-border" type="text" placeholder="First Name" name="UFName">
+              </div>
+              <div class="w3-border">
+                <input class="w3-input w3-border" type="text" placeholder="Last Name" name="ULName" >
+              </div>
+              <div class="w3-border">
+                <input class="w3-input w3-border" type="text" placeholder="Number of People" name="NoPeople">
+              </div>
+
+
+              <div class="w3-input w3-border">
+                
+                <h6> Choose a Restaurant to eat at:</h6>  
+                <dl>
+                    <select name="Res_ID">
+                    {% for Res_ID, Name in resname %}
+                    <option value="{{ Res_ID }}">{{ Name }}</option>
+                    {% endfor %}
+                    </select>
+                  </dl>
+                
+              </div>
+
+
+              <div class="w3-input w3-border">
+                
+                <h6> Choose the First Destination you would like to visit:</h6>  
+                <dl>
+                    <select name="Des_ID1">
+                    {% for Des_ID, Name in destname %}
+                    <option value="{{ Des_ID }}">{{ Name }}</option>
+                    {% endfor %}
+                    </select>
+                  </dl>
+                
+              </div>
+
+              <div class="w3-input w3-border">
+                
+                <h6> Choose the Second Destination you would like to visit:</h6>  
+                <dl>
+                    <select name="Des_ID2">
+                    {% for Des_ID, Name in destname %}
+                    <option value="{{ Des_ID }}">{{ Name }}</option>
+                    {% endfor %}
+                    </select>
+                  </dl>
+                
+              </div>
+
+            <p><button class="w3-button w3-dark-grey" type="submit">Create Your Daytrip!!</button></p>
+            </form>
+          </div>
+          </div>
+
+        </header>
+{% endblock %}

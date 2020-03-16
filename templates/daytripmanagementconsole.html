@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+
+{% block body %} 
+<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+    <img class="w3-image" src="https://live.staticflickr.com/922/28226207217_7d2fed33f9_b.jpg" alt="Manchester" width="1500" height="700">
+    <div class="w3-display-middle" style="width:65%">
+
+        <div id="Daytrips" class="w3-container w3-white w3-padding-16 myLink">
+            <h3>Daytrip Manager</h3>
+            <h5>View your current details below and change what you would like to:</h5>
+            <br>
+            <div class="w3-row-padding" style="margin:0 -10px;">
+            
+            <h6><b>Your Trip ID: </b>{{tripid}}:</h6> 
+            <h6><b>First Name on Booking:</b> {{daytriplist[0]}}</h6>
+            <h6><b>Last Name on Booking:</b> {{daytriplist[1]}}</h6> 
+            <h6><b>No of People on Booking:</b> {{daytriplist[2]}}</h6> 
+            <h6><b>Name and Address of the Restaurant you selected:</b> {{r1[0]}}, {{r1[1]}}, <b>Price:</b> {{r1[3]}}</h6> 
+            <h6><b>Name and Address of the First destination you selected:</b> {{d1[1]}},{{d1[2]}}</h6> 
+            <h6><b>Name and Address of the Second destination you selected:</b> {{d2[1]}},{{d2[2]}}</h6> 
+
+            <form method="POST" action=''>
+              <div class="w3-border">
+                <input class="w3-input w3-border" type="text" placeholder="Enter here to change the First Name on your booking:" name="UFName" >
+              </div>
+              <div class="w3-border">
+                <input class="w3-input w3-border" type="text" placeholder="Enter here to change the Last Name on your booking:" name="ULName">
+              </div>
+              <div class="w3-border">
+                <input class="w3-input w3-border" type="text" placeholder="Enter here to change the No of People on your booking:" name="NoPeople" >
+              </div>
+              
+              <div class="w3-input w3-border">
+                
+                <h6>Select a new Restaurant to eat at here:</h6>  
+                <dl>
+                    <select name="Res_ID">
+                    {% for Res_ID, Name in resname %}
+                    <option value="{{ Res_ID }}">{{ Name }}</option>
+                    {% endfor %}
+                    </select>
+                  </dl>
+                
+              </div>
+
+
+              <div class="w3-input w3-border">
+                
+                <h6>Select a new First Destination you would like to visit:</h6>  
+                <dl>
+                    <select name="Des_ID1">
+                    {% for Des_ID, Name in destname %}
+                    <option value="{{ Des_ID }}">{{ Name }}</option>
+                    {% endfor %}
+                    </select>
+                  </dl>
+                
+              </div>
+
+              <div class="w3-input w3-border">
+                
+                <h6>Select a new Second Destination you would like to visit:</h6>  
+                <dl>
+                    <select name="Des_ID2">
+                    {% for Des_ID, Name in destname %}
+                    <option value="{{ Des_ID }}">{{ Name }}</option>
+                    {% endfor %}
+                    </select>
+                  </dl>
+                
+              </div>
+
+
+                
+            </div>
+
+            <p><button class="w3-button w3-dark-grey" type="submit">Change Your Daytrip!!</button></p>
+            </form>
+          </div>
+          </div>
+</header>        
+
+
+{% endblock %}

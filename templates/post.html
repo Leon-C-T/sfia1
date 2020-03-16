@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block body %} 
+
+
+
+
+    <form action="" method=post >
+      <dl>
+        <dt>Restaurant Name:
+        <dd><select name="info">
+        {% for Res_ID, Name in resname %}
+        <option value="{{ Res_ID }}">{{ Name }}</option>
+        
+        {% endfor %}
+        </select>
+        <br><br>
+        <dd><input type=submit value="Submit">
+      </dl>
+    </form>
+
+    {% endblock %}

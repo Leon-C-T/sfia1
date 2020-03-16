@@ -1,0 +1,120 @@
+{% extends 'layout.html' %}
+
+{% block body %} 
+    <!-- Header -->
+<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+    <img class="w3-image" src="https://d3e1m60ptf1oym.cloudfront.net/5c01d41c-8c9e-45c7-9683-f2da14ef4b35/MWDEC18-146350_xgaplus.jpg" alt="Manchester" width="1500" height="700">
+    <div class="w3-display-middle" style="width:65%">
+      <div class="w3-bar w3-black">
+        <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Daytrips');"><i class="fa fa-plane w3-margin-right"></i>Daytrips</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Destinations');"><i class="fa  w3-margin-right"></i>Destinations</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Restaurants');"><i class="fa  w3-margin-right"></i>Restaurants</button>
+      </div>
+  
+      <!-- Tabs -->
+      <div id="Daytrips" class="w3-container w3-white w3-padding-16 myLink">
+        <h3>Travel To Manchester With Us!</h3>
+        <br>
+        <div class="w3-row-padding" style="margin:0 -16px;">
+        </div>
+        <p><a href="/DaytripCreate"><button class="w3-button w3-dark-grey">Create your Daytrip Here</button> </a></p>
+        <p><a href="/DaytripManager"><button class="w3-button w3-dark-grey">Manage your Daytrip Here</button> </a></p>
+      </div>
+  
+      <div id="Destinations" class="w3-container w3-white w3-padding-16 myLink">
+        <h3>Choose from over 10 locations to visit in Manchester!!</h3>
+        <p>We offer group discounts</p>
+        <p>YOOOOOOOOOOOOOOOOOOOOOO.</p>
+        <p><a href="/Destinations"></a><button class="w3-button w3-dark-grey">Search for destinations to visit</button></p>
+      </div>
+  
+      <div id="Restaurants" class="w3-container w3-white w3-padding-16 myLink">
+        <h3>Dine at some of the best places to eat in Manchester</h3>
+        <p><span class="w3-tag w3-deep-orange">NEGATIVE DISCOUNT!</span> Special offer if you book today: 25% added on to whatever you book today with us!!</p>
+        <input class="w3-input w3-border" type="text" placeholder="Pick-up point">
+        <p><a href="/Restaurants"></a><button class="w3-button w3-dark-grey">Search some restaurants</button></p>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Page content -->
+  <div class="w3-content" style="max-width:1100px;">
+  
+    <!-- Good offers -->
+    <div class="w3-container w3-margin-top">
+      <h3>Some of the Places that we offer:</h3>
+    </div>
+    <div class="w3-row-padding w3-text-white w3-large">
+      <div class="w3-half w3-margin-bottom">
+        <div class="w3-display-container">
+          <img src="https://andyfuryfootballgrounds.files.wordpress.com/2015/07/wpid-20150704_193133.jpg" alt="Etihad Stadium" style="width:100%">
+          <span class="w3-display-bottomleft w3-padding">Etihad Stadium</span>
+        </div>
+      </div>
+      <div class="w3-half">
+        <div class="w3-row-padding" style="margin:0 -16px">
+          <div class="w3-half w3-margin-bottom">
+            <div class="w3-display-container">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Old_Trafford_outside_20060726_1.jpg" alt="Old Trafford" style="width:100%">
+              <span class="w3-display-bottomleft w3-padding">Old Trafford</span>
+            </div>
+          </div>
+          <div class="w3-half w3-margin-bottom">
+            <div class="w3-display-container">
+              <img src="https://www.whitworth.manchester.ac.uk/visit/thenewgallery/history/welcome02.jpg" alt="Whitworth Art Gallery" style="width:100%">
+              <span class="w3-display-bottomleft w3-padding">Whitworth Art Gallery</span>
+            </div>
+          </div>
+        </div>
+        <div class="w3-row-padding"  height="200" style="margin:0 -16px">
+          <div class="w3-half w3-margin-bottom">
+            <div class="w3-display-container">
+              <img src="https://www.themeteor.org/wp-content/uploads/2019/05/1200px-The_Manchester_Museum-800x416.jpg" alt="Manchester Museum" style="width:100%">
+              <span class="w3-display-bottomleft w3-padding">Manchester Museum</span>
+            </div>
+          </div>
+          <div class="w3-half w3-margin-bottom">
+            <div class="w3-display-container">
+              <img src="https://i.pinimg.com/originals/43/b3/fa/43b3fa94425f534d4310886a9382ea2b.jpg" alt="Northern Quarter" style="width:100%">
+              <span class="w3-display-bottomleft w3-padding">Northern Quarter</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+    
+    <!-- Explore Restaurants -->
+    <div class="w3-container">
+      <h3>Restaurants That We Reccommend</h3>
+      <p>Choose to travel with us and dine at some of the best spots in Manchester.</p>
+    </div>
+    <div class="w3-row-padding">
+      <div class="w3-half w3-margin-bottom">
+        <img src=https://wp3-fatsomasites.imgix.net/uploads/sites/550/2018/01/rudys-blog-1.png?auto=format%2Ccompress alt="Rudy's" height="300" width="1920" style="width:100%">
+        <div class="w3-container w3-white">
+          <h3>Rudys' Neapolitan</h3>
+          <p class="w3-opacity">Voted in the Top 10 Pizzerias in the World</p>
+          <button class="w3-button w3-margin-bottom">Why</button>
+        </div>
+      </div>
+      <div class="w3-half w3-margin-bottom">
+        <img src="https://20stories.co.uk/wp-content/uploads/sites/63/2018/02/JKP_381.jpg" alt="Austria" height="300" width="1920"style="width:100%">
+        <div class="w3-container w3-white">
+          <h3>20 Stories Manchester</h3>
+          <p class="w3-opacity">Wine and Dine overlooking the City</p>
+          <button class="w3-button w3-margin-bottom">Buy Tickets</button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <iframe width="300" height="200" frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBG2D_gPv9HTmI0232OYaXVBH_J3GhdW3Y&q=London+UK" allowfullscreen></iframe>
+
+
+    {% endblock %}
+
+    

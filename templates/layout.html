@@ -1,0 +1,95 @@
+
+<html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!-- Navigation Bar -->
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title></title>
+
+
+<div class="w3-bar w3-white w3-border-bottom w3-xlarge">
+  <a href="/" class="w3-bar-item w3-button w3-text-red w3-hover-red"><b><img src = https://1000logos.net/wp-content/uploads/2017/08/OVO-Logo.png style="width:3%" style="length:4%"><i>Just A Random Booking Site</i></b></a>
+</div>
+<div>
+  <nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/DaytripCreate">Daytrip Creator</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/DaytripManager">Daytrip Manager</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/Destinations">Destinations</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/Restaurants">Restaurants</a>
+    </li>
+
+  </ul>
+</nav>
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<ul>
+{% for category, message in messages %}
+<li class="alert alert-{{ category }}">{{message}}</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<!-- End Navigation Bar-->
+
+
+<!-- Body Content-->
+
+{% block body %}
+{% endblock %}
+
+<!-- End Body Content-->
+
+
+
+
+<!-- End page content -->
+
+
+
+    
+    
+    
+
+
+<script>
+        // Tabs
+        function openLink(evt, linkName) {
+          var i, x, tablinks;
+          x = document.getElementsByClassName("myLink");
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablink");
+          for (i = 0; i < x.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+          }
+          document.getElementById(linkName).style.display = "block";
+          evt.currentTarget.className += " w3-red";
+        }
+        
+        // Click on the first tablink on load
+        document.getElementsByClassName("tablink")[0].click();
+        </script>
+        
+        </body>
+  </html>

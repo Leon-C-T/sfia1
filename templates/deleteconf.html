@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block body %} 
+<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+    <img class="w3-image" src="https://live.staticflickr.com/922/28226207217_7d2fed33f9_b.jpg" alt="Manchester" width="1500" height="700">
+    <div class="w3-display-middle" style="width:65%">
+
+        <div id="Daytrips" class="w3-container w3-white w3-padding-16 myLink">
+            <h3>ARE YOU SURE YOU WANT TO DELETE YOUR BOOKING!!??</h3>
+            <h5>Please re-enter your details again to confirm:</h5>
+            <div class="w3-row-padding" style="margin:0 -16px;">
+            
+            <form method="POST" action=''>
+            </div>
+              <div class="w3-border">
+                <input class="w3-input w3-border" type="text" placeholder="Your Trip ID e.g. 18" name="UTripIDconf">
+              </div>
+              <div class="w3-border">
+                <input class="w3-input w3-border" type="text" placeholder="First Name on your booking:" name="UFNameconf" >
+              </div>
+              <div class="w3-border">
+                <input class="w3-input w3-border" type="text" placeholder="Last Name on your booking:" name="ULNameconf">
+              </div>
+              
+              </div>
+
+            <p><button class="w3-button w3-red" type="submit">Delete your Daytrip :(</button> </form> <a href="/DaytripManager"><button class="w3-button w3-green">I've Changed my Mind :)</button> </a></p>
+          
+          </div>
+          </div>
+</header>        
+
+{% endblock %}
