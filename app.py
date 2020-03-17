@@ -5,38 +5,30 @@ import os
 
 app = Flask(__name__)
 
-
 app.config['MYSQL_HOST'] = os.environ.get('MYSQLHOST') #-ip address of SQL DB - environ variable: MYSQLHOST="ip address"
 app.config['MYSQL_USER'] = os.environ.get('MYSQLUSER') #-Username for DB - environ variable: MYSQLUSER="root"
 app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQLPASSWORD') #Password for DB - environ variable: MYSQLPASSWORD="whatever the password is"
 app.config['MYSQL_DB'] = os.environ.get('MYSQLDB') #Database thats being used - environ variable: MYSQLDB="whatever database you want to use"
-#app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-app.secret_key = os.environ.get('MYSQLSECRETKEY')
+app.secret_key = os.environ.get('MYSQLSECRETKEY') # Secret Key for use with session
+#app.config['MYSQL_CURSORCLASS'] = 'DictCursor' #NOT USED
 
 mysql = MySQL(app)
 
-@app.route("/")
+
+############################################################# Home Page ##############################################################
+
+@app.route("/") 
 def home():
-    #cur = mysql.connection.cursor() #- connect to SQL database
-    #cur.execute("Select * from accounts;") #- SQL commands to run (ID Int(3) , name Varchar(20));"
-    #mysql.connection.commit() #- Executes MYSQL command
-    #x = cur.fetchall() # local variable
-    #cur.close() #- closes the connection to the DB
-    
-    #info =[]
-
-    #for row in x:
-    #    info.append(row)
-    #print(info)
-
     return render_template("index.html" , title = '0161 Manny on the Map')
 
-@app.route("/world")
-def world():
-    return render_template("world.html" , title = 'BOTTLERS')
+
+######################################################## Daytrip Create Page ##########################################################
 
 @app.route("/DaytripCreate", methods=['GET','POST'])
 def daytrip():
+
+    ############## Pull Restaurant and Destination Name Info for use in a dropdown list #############
+
     cur = mysql.connection.cursor()
     cur.execute("SELECT Res_ID, Name FROM Restaurants")
     resname=cur.fetchall()
@@ -45,16 +37,22 @@ def daytrip():
     x.execute("SELECT Des_ID, Name FROM Destination")
     destname=x.fetchall()
     x.close()
-    if request.method == "POST":
-        details = request.form
-        firstN = details['UFName']
-        lastN = details['ULName']
-        NoFPeople = details['NoPeople']
-        Restaurant_ID = details['Res_ID']
-        Destination1 = details['Des_ID1']
-        Destination2 = details['Des_ID2']
+
+    ################## Inserting information into Database if the Form is submitted ###################
+    
+    if request.method == "POST":                ## Checks to see if the Form is submitted as a POST Request
+        details = request.form                  ## Pulls the Data from the Form
+        firstN = details['UFName']              ## First Name on Daytrip Booking
+        lastN = details['ULName']               ## Last Name on Daytrip Booking
+        NoFPeople = details['NoPeople']         ## No of People on Daytrip Booking
+        Restaurant_ID = details['Res_ID']       ## Restaurant selected on Daytrip Booking
+        Destination1 = details['Des_ID1']       ## 1st Dest selected on Daytrip Booking
+        Destination2 = details['Des_ID2']       ## 2nd Dest selected on Daytrip Booking
         
-       
+    ######## Data Validation Section ########
+
+    ## Checking to ensure that all fields have data entered into it and also if name field character limit < 50:
+
         if firstN == '' or lastN == '' or NoFPeople == '':
             flash('You must fill in all fields! Please try again!', 'danger')
             return redirect(url_for('daytrip'))
@@ -64,6 +62,8 @@ def daytrip():
         if Destination1 == '1' or Destination2 == '1' or Restaurant_ID =='1':
             flash('You must fill in all fields! Please try again!', 'danger')
             return redirect(url_for('daytrip'))
+
+    ## Checking to ensure name fields only have letters entered into it:
 
         lettertest=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ']
         nametest1 = list(firstN.lower())
@@ -77,6 +77,7 @@ def daytrip():
                 flash('You can only enter letters in the name Field, Please try again', 'danger')
                 return redirect(url_for('daytrip'))
 
+    ## Checking to ensure No of People Field only has numbers entered into it (or if blank -> 0)
 
         if NoFPeople == '':
             nop = 0
@@ -90,52 +91,69 @@ def daytrip():
             else:
                 nop = int(NoFPeople)
 
+    ## Checking to see if no of people value > 30:
+
         if nop > 30:
             flash('You have too many people in your booking, Please contact us directly for large group bookings (30+)', 'danger')
             return redirect(url_for('daytrip'))
+
+    ## Checking to see if both destinations selected are the same:
+
         if Destination1 == Destination2:
             flash('You cannot select the same Destination twice! Please try again', 'danger')
             return redirect(url_for('daytrip'))
+
+    ## Inserting Info into MySQL Database:
         else:
-            cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO Daytrip (First_Name_on_Booking, Last_Name_on_Booking, No_of_People, Trip_Res_ID) VALUES (%s, %s, %s, %s)", (firstN, lastN, NoFPeople, Restaurant_ID))
-            mysql.connection.commit()
-            cur.execute("SELECT * FROM Daytrip ORDER BY Trip_id DESC LIMIT 1")
-            trip = cur.fetchall()
-            tripid = trip[0]
-            tripid = tripid[0]
-            #print(tripid)
-            cur.execute("INSERT INTO DesJoin (Trip_ID,Destination_ID) VALUES (%s,%s)",(tripid,Destination1))
-            cur.execute("INSERT INTO DesJoin (Trip_ID,Destination_ID) VALUES (%s,%s)",(tripid,Destination2))
-            mysql.connection.commit()
-            cur.close()
-            return redirect(url_for('posttripcreate'))
+            cur = mysql.connection.cursor()                                                                                                                                                     ## Opens Connection to Database
+            cur.execute("INSERT INTO Daytrip (First_Name_on_Booking, Last_Name_on_Booking, No_of_People, Trip_Res_ID) VALUES (%s, %s, %s, %s)", (firstN, lastN, NoFPeople, Restaurant_ID))      ## Inserts First Name, Last Name, No of People and Selected Restaurant ID information into Database                            
+            mysql.connection.commit()                                                                                                                                                           ## Commits commands to Database
+            cur.execute("SELECT * FROM Daytrip ORDER BY Trip_id DESC LIMIT 1")                                                                                                                  ## Pulls the Trip_ID created
+            trip = cur.fetchall()                                                                                                                                                               ## ^^^^                        
+            tripid = trip[0]                                                                                                                                                                    ## Extracts Trip_ID Value from list that was returned back
+            tripid = tripid[0]                                                                                                                                                                  ## ^^^^
+            cur.execute("INSERT INTO DesJoin (Trip_ID,Destination_ID) VALUES (%s,%s)",(tripid,Destination1))                                                                                    ## Inserts Destination 1 into joining table with the current Trip_ID
+            cur.execute("INSERT INTO DesJoin (Trip_ID,Destination_ID) VALUES (%s,%s)",(tripid,Destination2))                                                                                    ## Inserts Destination 2 into joining table with the current Trip_ID
+            mysql.connection.commit()                                                                                                                                                           ## Commits commands to Database
+            cur.close()                                                                                                                                                                         ## Closes Connection to Database
+            return redirect(url_for('posttripcreate'))                                                                                                                                          ## Redirects to Daytrip Create Confirmation Page
+                                                                                                                                                    
+    ## Returns Template page for daytrip create:                                                                                                                                             
     else:
-        return render_template("daytripcreate.html" , title = 'Daytrips', resname=resname, destname=destname)
+        return render_template("daytripcreate.html" , title = 'Daytrips', resname=resname, destname=destname)                                                                                   
+
+################################################## Daytrip Create Confirmation Page ####################################################
 
 @app.route("/bookingconf", methods =['GET'])
 def posttripcreate():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM Daytrip ORDER BY Trip_id DESC LIMIT 1")
-    daytripinfo = cur.fetchall()
-    allinfo = daytripinfo[0]
-    daytriplist = []
-    for i in daytripinfo:
+    
+    ############## Displays All Info for the Booking that was just created #############
+
+    cur = mysql.connection.cursor()                                                 ## Opens Connection to Database
+    cur.execute("SELECT * FROM Daytrip ORDER BY Trip_id DESC LIMIT 1")              ## Selects the most recent daytrip created from the Daytrip Table
+    daytripinfo = cur.fetchall()                                                    ## Fetches the info
+    allinfo = daytripinfo[0]                                                        ## ^^^^
+    daytriplist = []                                                                
+    for i in daytripinfo:                                                           ## Converts the tuple returned to a list
         for j in i:
             daytriplist.append(j)
-    tripid = allinfo[0]
-    resid = allinfo [4]
-    cur.execute("SELECT Destination.Name, Destination.Address FROM Destination JOIN DesJoin ON Destination.Des_ID = DesJoin.Destination_ID WHERE DesJoin.Trip_ID = (%s)",[tripid])
-    destinationinfo = cur.fetchall()
-    d1 = list(destinationinfo[0])
-    d2 = list(destinationinfo[1])
-    cur.execute("SELECT Restaurants.Name, Restaurants.Address, Restaurants.Type, Restaurants.Price FROM Restaurants JOIN Daytrip on Daytrip.Trip_Res_ID = Restaurants.Res_ID WHERE Daytrip.Trip_Res_ID = (%s)", [resid])
-    resinfo = cur.fetchall()
-    r1 = list(resinfo[0])
-    mysql.connection.commit()
-    cur.close()
-    return render_template("bookingconf.html", title = 'Your Created Trip:', allinfo=daytriplist, r1=r1, d1=d1, d2=d2)
 
+    tripid = allinfo[0]                                                                                                                                                                                                     ## Selects the Trip_ID from the list
+    resid = allinfo [4]                                                                                                                                                                                                     ## Selects the Restaurant ID from the list
+    cur.execute("SELECT Destination.Name, Destination.Address FROM Destination JOIN DesJoin ON Destination.Des_ID = DesJoin.Destination_ID WHERE DesJoin.Trip_ID = (%s)",[tripid])                                          ## Pulls info for both Destinations using the current Trip_ID 
+    destinationinfo = cur.fetchall()                                                                                                                                                                                        ## ^^^^
+    d1 = list(destinationinfo[0])                                                                                                                                                                                           ## Converts all info for Destination 1 from Tuple to a list     
+    d2 = list(destinationinfo[1])                                                                                                                                                                                           ## Converts all info for Destination 2 from Tuple to a list
+    cur.execute("SELECT Restaurants.Name, Restaurants.Address, Restaurants.Type, Restaurants.Price FROM Restaurants JOIN Daytrip on Daytrip.Trip_Res_ID = Restaurants.Res_ID WHERE Daytrip.Trip_Res_ID = (%s)", [resid])    ## Pulls info for the Restaurant using the current Trip_ID
+    resinfo = cur.fetchall()                                                                                                                                                                                                ## ^^^^                           
+    r1 = list(resinfo[0])                                                                                                                                                                                                   ## Converts the info for the Restaurant from Tuple to a list                                
+    mysql.connection.commit()
+    cur.close()                                                                                                                                                                                                             ## Closes the connection to the Database  
+
+    ## Returns Template page for the Booking Confirmation                                    
+    return render_template("bookingconf.html", title = 'Your Created Trip:', allinfo=daytriplist, r1=r1, d1=d1, d2=d2)                                                                                                      ## Passes the pulled information for use in the HTML template
+
+#################################################### Daytrip Manager Main Page ##########################################################
 
 @app.route("/DaytripManager", methods = ['POST','GET'])
 def daytripmanage():
@@ -171,6 +189,8 @@ def daytripmanage():
                 flash('You have entered invalid credentials please try again', 'danger')
                 return redirect(url_for('daytripmanage'))          
     return render_template("daytripmanager.html" , title = 'Daytrip Manager') 
+
+################################################## Daytrip Management Console Page ######################################################
 
 @app.route("/DaytripManagementconsole", methods=['GET','POST'])
 def daytripmanagementconsole():
@@ -269,6 +289,8 @@ def daytripmanagementconsole():
 
     return render_template("daytripmanagementconsole.html" , title = 'Daytrip Manager', tripid = tripid, daytriplist = daytriplist, r1=r1, d1=d1, d2=d2, resname=resname, destname=destname ) 
 
+################################################## Daytrip Delete Confirmation Page ######################################################
+
 @app.route("/Daytripdeletion", methods = ['POST','GET'])
 def deleteconf():
     tripidval = session['tripid']
@@ -299,15 +321,13 @@ def deleteconf():
             return redirect(url_for('deleteconf'))
     return render_template("deleteconf.html" , title = 'Daytrip Deletion')
 
-
-
-def goHome():
-    return render_template("index.html" , title = 'Daytrips')
-
+##################################################### Daytrip Destinations Page ###########################################################
 
 @app.route("/Destinations")
 def destinations():
     return render_template("destinations.html" , title = 'Destinations')
+
+##################################################### Daytrip Restaurants Page ###########################################################    
 
 @app.route("/Restaurants")
 def restaurants():
