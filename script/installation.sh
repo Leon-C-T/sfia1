@@ -6,7 +6,7 @@ python3 -m pip install flask
 
 python3 -m pip install flask_mysqldb
 
-python3 -m pip install pytest
+pip3 install pytest
 
 python3 -m pip install urllib3
 
