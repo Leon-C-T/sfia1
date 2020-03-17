@@ -13,7 +13,7 @@ pipeline{
                 sh 'sudo systemctl start mintbooking.service'
                 // sh 'sudo systemctl restart mintbooking.service'
                 sh 'echo "Built Successfully"'
-                // sh 'sleep 15'       
+                sh 'sleep 13'       
             }
         }
 
