@@ -14,6 +14,3 @@ python3 -m pip install pytest-base-url
 
 python3 -m pip install coverage
 
-source ~/.bashrc
-
-python3 /var/lib/jenkins/workspace/sfia1/app.py

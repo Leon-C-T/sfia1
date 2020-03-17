@@ -3,7 +3,7 @@ Description = Mint Booking Flask App
 [Service]
 User = jenkins
 
-ExecStart=/var/lib/jenkins/workspace/sfia1/script/installation.sh
+ExecStart=/var/lib/jenkins/workspace/sfia1/script/run.sh
 
 [Install]
 WantedBy = multi-user.target
