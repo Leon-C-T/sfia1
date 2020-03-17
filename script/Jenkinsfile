@@ -19,8 +19,8 @@ pipeline{
             steps{
                 sh 'python3 -m pytest ./test/testing.py'
                 sh 'pip3 show coverage'
-                sh 'coverage run python3 -m pytest ./test/testing.py'
-                sh 'coverage report -m'
+                sh 'python3 -m coverage run  pytest ./test/testing.py'
+                sh 'python3 -m coverage report -m'
                 sh 'echo "Testing completed Successfully"'
             }
         }
