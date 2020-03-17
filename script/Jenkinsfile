@@ -10,7 +10,7 @@ pipeline{
                 sh './script/installation.sh'
                 sh './script/buildservices.sh'                
                 sh 'echo "Built Successfully"'
-                sh 'sleep 13'       
+                //sh 'sleep 13'       
             }
         }
 
