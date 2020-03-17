@@ -2,7 +2,6 @@
 
 source venv/bin/activate
 
-sudo su jenkins
 
 python3 -m pip install flask
 
