@@ -4,13 +4,16 @@ pipeline{
     stages{
         stage('Development Environment'){ 
             steps{
-                sh 'sudo systemctl stop mintbooking.service'
                 sh 'chmod +x ./script/*' //makes everything in script folder executable - makes root/group/user executable
                 sh './script/before_installation.sh' //use dot to run something
+                sh 'echo "Before Installation Commands Complete'
+                sh 'sleep 2'
                 sh './script/installation.sh'
+                sh 'echo "Installation Commands Complete'
+                sh 'sleep 2'
                 sh './script/buildservices.sh'                
-                sh 'echo "Built Successfully"'
-                //sh 'sleep 13'       
+                sh 'echo "Services Built Successfully"'
+                sh 'sleep 2'       
             }
         }
 
