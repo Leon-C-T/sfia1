@@ -2,7 +2,7 @@ pipeline{
     agent any //to define which node to deploy on - any means to deploy on every server that has been defined , e.g. agent leon, joel etc to deploy on server leon and joel
 
     stages{
-        stage('Development Environment'){ //
+        stage('Development Environment'){ 
             steps{
                 sh 'sudo cp /var/lib/jenkins/workspace/sfia1/script/mintbooking.service /etc/systemd/system'
                 sh 'chmod +x ./script/*' //makes everything in script folder executable - makes root/group/user executable
@@ -11,9 +11,16 @@ pipeline{
                 sh 'sudo systemctl enable mintbooking.service'
                 sh 'sudo systemctl start mintbooking.service'
                 sh 'sudo systemctl restart mintbooking.service'
-                sh 'echo "Built Successfully"' 
-                
-                
+                sh 'echo "Built Successfully"'        
+            }
+        }
+
+        stage('Testing Environment'){
+            steps{
+                sh 'pytest ./test/testing.py'
+                sh 'coverage run -m pytest /test/testing.py'
+                sh 'coverage report -m'
+                sh 'echo "Testing completed Successfully"'
             }
         }
     }
