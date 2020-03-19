@@ -21,7 +21,6 @@ mysql = MySQL(app)
 def home():
     return render_template("index.html" , title = '0161 Manny on the Map')
 
-
 ######################################################## Daytrip Create Page ##########################################################
 
 @app.route("/DaytripCreate", methods=['GET','POST'])
@@ -158,13 +157,17 @@ def posttripcreate():
 @app.route("/DaytripManager", methods = ['POST','GET'])
 def daytripmanage():
    
-    if request.method == "POST":
-        cur = mysql.connection.cursor()
-        details = request.form
-        tripidval = details['UTripID'] #tripidval
-        firstN = details['UFName']
-        lastN = details['ULName']
-        cur.execute("SELECT First_Name_on_Booking, Last_Name_on_Booking FROM Daytrip WHERE Trip_ID = %s", [tripidval])
+
+    ################## Selecting information into Database if the Form is submitted in the Manager Page ###################
+
+    if request.method == "POST":                        ## Checks to see if the Form is submitted as a POST Request
+        cur = mysql.connection.cursor()                 ## Creates a cursor and opens the connection to the database
+        details = request.form                          ## Pulls the Data from the Form
+        tripidval = details['UTripID']                  ## Trip_ID Value the user has input
+        firstN = details['UFName']                      ## First Name the user has input
+        lastN = details['ULName']                       ## Last Name the user has input
+        
+        cur.execute("SELECT First_Name_on_Booking, Last_Name_on_Booking FROM Daytrip WHERE Trip_ID = %s", [tripidval])      ## Pulls First and Last Name from database for the Trip_ID value that the User has input in the form
         daytripinfo = cur.fetchall()
         daytriplist = []
         for i in daytripinfo:
