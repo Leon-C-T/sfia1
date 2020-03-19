@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, url_for, flash, session
+from flask import Flask
 from flask_mysqldb import MySQL
 import os
 import urllib3
@@ -61,7 +61,7 @@ def test_create():
         cur.close()
         assert 1 == (tripidnew - tripidold)
 
-time.sleep(4)
+time.sleep(2)
 
 def test_read():
 
@@ -88,7 +88,7 @@ def test_read():
         
         assert (firstname == firstN) == True and (lastname == lastN) == True and (int(NoFPeople) == NoOfPeople) == True and (resid == int(Restaurant_ID)) == True and (desid1 == int(Destination1)) == True and (desid2 == int(Destination2)) == True
  
-time.sleep(4)
+time.sleep(2)
 
 def test_update():
     with app.app_context():
@@ -142,7 +142,7 @@ def test_update():
 
         assert (firstupdated == firstNew) == True and (lastupdated == lastNew) == True and (nopupdated == int(NoPeopleNew)) == True and (residupdated == int(resnew)) == True and (desid1updated == int(d1new)) == True and (desid2updated == int(d2new)) == True
 
-time.sleep(4)
+time.sleep(2)
 
 def test_delete():
     with app.app_context():
