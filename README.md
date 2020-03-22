@@ -1,5 +1,5 @@
 ## Index
-[Product Brief](#brief)
+[Project Brief](#brief)
    * [My Product Solution](#mysolution)
    
 [ERD and Diagrams](#erdanddiagrams)
@@ -29,7 +29,7 @@
 [Acknowledgements](#acknowledgements)
 
 <a name="brief"></a>
-## The Product Brief
+## The Project Brief
 
 The goal of this First SFIA Project was to produce a solution that:
 * Made use of the various methodologies, tools and techniques that were covered in all the modules done during training so far.
