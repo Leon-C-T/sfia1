@@ -51,7 +51,7 @@ The front-end functionality of this application would use Flask, HTML and Bootst
 
 <a name="erd"></a>
 ### Initial Entity Relationship Diagrams
-![Initial ERD](/images/ERD.png)
+![Initial ERD](/images/ERD.PNG)
 
 Shown above is the ERD diagram for the inital database structure of the application. There are a total of 4 tables in which one is a joining table. 
 
