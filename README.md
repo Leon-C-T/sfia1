@@ -88,28 +88,28 @@ Using Trello I created a list for all the use-cases of the application from the 
 ![UserStories](/images/Userstories.PNG)
 
 <a name="spr1"></a>
-## Trello Board - Sprint 1)
+## Trello Board - Sprint 1
 
 I decided to split my project into 4 sprints. After determining the main requirements of my project, my First Sprint looked like this:
 
 ![Sprint 1 Image](/images/sprint1.PNG)
 
 <a name="spr2"></a>
-## Trello Board (Sprint 2)
+## Trello Board - Sprint 2
 
 After completing the tasks set out during my first sprint, I moved them them to the things done list. I then moved over cards from my sprint backlog, depending on their importance, to the second sprint, as shown below:
 
 ![Sprint 2 Image](/images/sprint2.PNG)
 
 <a name="spr3"></a>
-## Final Stages (Sprint 2....)
+## Trello Board - Sprint 3
 
 By the start of this third Sprint, most of the project requirements have been met, so final touches as well as some data entry testing were being introduced in this sprint to ensure the website worked seamlessly with the back-end database hosted on GCP as shown on the board below:
 
 ![Sprint 3 Image](/images/sprint3.PNG)
 
 <a name="sprF"></a>
-## Final Sprint
+## Trello Board - Final Sprint
 
 My project at this point has now been complete, with all the original requirements having been met. Some of the optional feature have been added, however there were some parts of the project from the third sprint that have been scrapped due to time constraints such as the Google Maps API, and a page that lists all destinations and restaurants. These dropped features could be reconsidered for a future update of the application.
 
