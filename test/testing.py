@@ -4,7 +4,6 @@ import os
 import urllib3
 import time
 import pytest
-
 app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = os.environ.get('MYSQLHOST') #-ip address of SQL DB - environ variable: MYSQLHOST="ip address"
@@ -16,13 +15,33 @@ app.secret_key = os.environ.get('MYSQLSECRETKEY') # Secret Key for use with sess
 mysql = MySQL(app)
 
 
-def test_url():
+def test_mainurl():
     http = urllib3.PoolManager() 
     r = http.request('GET', 'http://34.89.78.75:5000/') # can use post method too ## or ip address of the website:5000 when its running on another machine
     assert 200 == r.status  #200 = successful connection
 
+def test_createurl():
+    http = urllib3.PoolManager() 
+    r = http.request('GET', 'http://34.89.78.75:5000/DaytripCreate') # can use post method too ## or ip address of the website:5000 when its running on another machine
+    assert 200 == r.status  #200 = successful connection
 
-############################################## Testing Loop ##############################################
+def test_managerurl():
+    http = urllib3.PoolManager() 
+    r = http.request('GET', 'http://34.89.78.75:5000/DaytripManager') # can use post method too ## or ip address of the website:5000 when its running on another machine
+    assert 200 == r.status  #200 = successful connection
+
+def test_destinationsurl():
+    http = urllib3.PoolManager() 
+    r = http.request('GET', 'http://34.89.78.75:5000/Destinations') # can use post method too ## or ip address of the website:5000 when its running on another machine
+    assert 200 == r.status  #200 = successful connection
+
+def test_restauranturl():
+    http = urllib3.PoolManager() 
+    r = http.request('GET', 'http://34.89.78.75:5000/Restaurants') # can use post method too ## or ip address of the website:5000 when its running on another machine
+    assert 200 == r.status  #200 = successful connection
+
+
+############################################## Database Testing Loop ##############################################
 
 
 #### Global Test Vars ####
