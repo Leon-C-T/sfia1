@@ -78,7 +78,7 @@ Shown above is the ERD diagram for the inital database structure of the applicat
 
 I created a Trello board to plan out my project as it had an easy and intuitive way of creating and managing cards that myself as a developer can assign anything to. I utilised MosCoW Prioritisation to give each requirement of the project an importance, so that I can use this to sort the order I should prioritise completing them in. I used a colour labelling method to do this and you can see an example of this below for my Project Backlog:
 
-![ProjectBacklog](/images/projectbacklog.PNG) ![Labels](/images/MoSCoWLabels.jpg)
+![ProjectBacklog](/images/projectbacklog.PNG) ![Labels](/images/MoSCoWLabels.PNG)
 
 <a name="userstories"></a>
 ### User Stories (Users and Developers)
