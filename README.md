@@ -4,8 +4,7 @@
    
 [ERD and Risk Assessment](#erdrisk)
    * [Initial ERD](#erd)
-   * [Risk Assessment](#riskassess)
-   * [Risk Assessment Table](#risktable)
+   * [Risk Assessment Table](#Risk)
    
 
 [Planning and Risk Assessment](#Planning)
@@ -68,8 +67,10 @@ Shown above is the ERD diagram for the inital database structure of the applicat
 
 <a name="Risk"></a>
 ### Risk Assessment Table
-![Risk Assessment Table](/images/risktable1.jpg)
-![Risk Assessment Table Part 2](/images/risktable2.jpg)
+
+A risk assessment for the project was conducted, and this is displayed below:
+
+![Risk Assessment Table](/images/risktable.PNG)
 
 <a name="Planning"></a>
 ## Planning 
