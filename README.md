@@ -16,19 +16,18 @@
    * [Trello Board Sprint 3](#spr3)
    * [Trello Board Completion Stage](#sprF)
 	
-[Testing Methadology](#testingmethod)
-   * [Generated Report](#testingreport)
+[Build and Testing](#BuildTest)
+   * [Pipeline](#Pipeline)
+   * [Coverage Report](#testingreport)
      
-[My Deployment Method](#deploymentmethod)
-   * [What I used](#techused)
 
-[Visual Representation of my Solution](#visrep)
+[Front End Visual](#visrep)
 
 [Retrospective](#improve)
 
 [Authors](#authorsinv)
 
-[Acknowledgements](#acknowledgements)
+
 
 <a name="brief"></a>
 ## The Project Brief
@@ -114,3 +113,77 @@ By the start of this third Sprint, most of the project requirements have been me
 My project at this point has now been complete, with all the original requirements having been met. Some of the optional feature have been added, however there were some parts of the project from the third sprint that have been scrapped due to time constraints such as the Google Maps API, and a page that lists all destinations and restaurants. These dropped features could be reconsidered for a future update of the application.
 
 ![Completion..](/images/finalsprint.PNG)
+
+<a name="BuildTest"></a>
+## Build and Testing
+
+<a name="Pipeline"></a>
+### The Pipeline
+
+The overall pipeline diagram for this Flask application is shown below. It involved using Github as a Version Control System which I then configured a webhook trigger for, so that Jenkins would automatically go through a Build/Test phase when a commit was made to GitHub. If the tests failed, Jenkins would not terminate the running application.
+
+![Pipeline](/images/pipeline.PNG)
+
+I used a python module called Pytest to create my tests. I tested parts of my Database code as well as conducted some URL testing to ensure that the website would work correctly. I used a Continuous Integration tool called Jenkins to automate the entire Build, Test pipeline, to ensure Jenkins terminated the service if the Testing stage did not complete successfully.
+
+<a name="testingreport"></a>
+### Testing Report (Generated after automated Jenkins Test)
+
+Below is a screenshot that was automatically generated after the testing stage was complete in the Jenkins Pipeline:
+
+![Coverage Report](/images/testing.PNG)
+
+<a name="techused"></a>
+### A List of the Technology Used in Building this Application
+
+* Python - For Coding in Flask
+* Flask -  Python Micro Web Framework 
+* HTML - For Webpage template design
+* MySQL - For Project Database
+* Testing - Pytest Python Framework
+* Jenkins - CI Server
+* Trello - Project Planning and Tracking Web Application
+* [Github Project](https://github.com/Leon-C-T/sfia1) - Version Control System
+* Google Cloud Platform Services (VM Instances and SQL Database)
+
+<a name="visrep"></a>
+### Front End Visual:
+
+### Homepage
+
+![HomePage](/images/Homepg.PNG)
+
+### Daytrip Creator
+
+![Create Page](/images/createtrip.PNG)
+
+### Booking Confirmation
+
+![Booking Confirmation Page](/images/bookingconf.PNG)
+
+### Daytrip Manage Login
+
+![Manage Page](/images/daytripmanager.PNG)
+
+### Management Console
+
+![Manage Console Page](/images/managementconsole.PNG)
+
+### Delete Booking
+
+![Delete Booking Confirmation](/images/deletebooking.PNG)
+
+
+<a name="evaluation"></a>
+## Retrospect
+
+During the process of building this application, I've developed a good understanding and appreciation for using Agile methodolgies such as Product Backlogs, Sprints, a flexible approach to setbacks, in product development, and the advantages that this brings over more traditional methods such as that of the Waterfall Method. By implementing the use of CI/CD using Jenkins, it allowed me to automate the process of building and testing the application without having to run each individual stage myself. Combining the use of Jenkins as well as Github for version control system, along with the services that the Google Cloud Platform provides such as the VM Instances used to host the Jenkins server and my development server, as well as the applications' database, and getting them to communicate seamlessly with one another was very satisfying and only piques my interest in what more I can do with these technologies.
+
+If I had to go back and improve on the application I have made, I would improve the front end functionality a lot more such as by implementing Google Maps API's, and search features as well as utilise Selenium Testing to test the front end thoroughly. I would also try to configure Jenkins to deploy on a seperate VM Instance instead of deploying on the instance Jenkins itself runs on
+
+To summarise, I would say the project was a success as it met the 3 original statements given in the brief and looking ahead I would definitely want to do research into what more these technologies can offer in various other use cases.
+
+<a name="authorsinv"></a>
+## Authors
+
+Leon C. Thallapally
