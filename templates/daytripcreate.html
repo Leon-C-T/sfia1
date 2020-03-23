@@ -13,13 +13,13 @@
             <form method="POST" action=''>
             </div>
               <div class="w3-border">
-                <input class="w3-input w3-border" type="text" placeholder="First Name" name="UFName">
+                <input id="CreateFirstName" class="w3-input w3-border" type="text" placeholder="First Name" name="UFName">
               </div>
               <div class="w3-border">
-                <input class="w3-input w3-border" type="text" placeholder="Last Name" name="ULName" >
+                <input id="CreateLastName" class="w3-input w3-border" type="text" placeholder="Last Name" name="ULName" >
               </div>
               <div class="w3-border">
-                <input class="w3-input w3-border" type="text" placeholder="Number of People" name="NoPeople">
+                <input id="CreateNoFPeople" class="w3-input w3-border" type="text" placeholder="Number of People" name="NoPeople">
               </div>
 
 
@@ -27,7 +27,7 @@
                 
                 <h6> Choose a Restaurant to eat at:</h6>  
                 <dl>
-                    <select name="Res_ID">
+                    <select id="CreateResID" name="Res_ID">
                     {% for Res_ID, Name in resname %}
                     <option value="{{ Res_ID }}">{{ Name }}</option>
                     {% endfor %}
@@ -41,7 +41,7 @@
                 
                 <h6> Choose the First Destination you would like to visit:</h6>  
                 <dl>
-                    <select name="Des_ID1">
+                    <select id="CreateDes1id" name="Des_ID1">
                     {% for Des_ID, Name in destname %}
                     <option value="{{ Des_ID }}">{{ Name }}</option>
                     {% endfor %}
@@ -54,7 +54,7 @@
                 
                 <h6> Choose the Second Destination you would like to visit:</h6>  
                 <dl>
-                    <select name="Des_ID2">
+                    <select id="CreateDes2id" name="Des_ID2">
                     {% for Des_ID, Name in destname %}
                     <option value="{{ Des_ID }}">{{ Name }}</option>
                     {% endfor %}
@@ -63,7 +63,7 @@
                 
               </div>
 
-            <p><button class="w3-button w3-dark-grey" type="submit">Create Your Daytrip!!</button></p>
+            <p><button id="CreateSubmitButton" class="w3-button w3-dark-grey" type="submit">Create Your Daytrip!!</button></p>
             </form>
           </div>
           </div>
