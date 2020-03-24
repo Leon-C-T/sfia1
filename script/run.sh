@@ -1,3 +1,3 @@
 #!/bin/bash
 source ~/.bashrc
-python3 /var/lib/jenkins/workspace/sfia1/app.py
+python3 /var/jenkins_home/workspace/sfia1/app.py
